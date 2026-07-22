@@ -2,6 +2,8 @@ import { Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
 import ListingPage from './pages/ListingPage'
+import MovieReviewPage from './pages/MovieReviewPage'
+import ProfilePage from './pages/ProfilePage'
 import SelectedYearPage from './pages/SelectedYearPage'
 import TheatrePage from './pages/TheatrePage'
 
@@ -15,49 +17,61 @@ function App() {
           <sub className="brand-sub">kahani hindi cinema ki</sub>
         </Link>
 
-        {/* Search */}
-        <div className="topbar-search">
-          <svg className="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" strokeWidth="1.6" />
-            <path d="M13 13l3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-          </svg>
-          <input
-            className="search-input"
-            type="search"
-            placeholder="Search films, stars, reviews…"
-            aria-label="Search"
-          />
-        </div>
+        <div className="topbar-right">
+          {/* Search */}
+          <div className="topbar-search">
+            <svg className="search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M13 13l3.5 3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+            </svg>
+            <input
+              className="search-input"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </div>
 
-        {/* Social icons */}
-        <div className="topbar-socials" aria-label="Social links">
-          {/* Facebook */}
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-            </svg>
-          </a>
-          {/* Instagram */}
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <circle cx="12" cy="12" r="4" />
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-            </svg>
-          </a>
-          {/* Twitter / X */}
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-          </a>
-          {/* Email */}
-          <a href="mailto:contact@naatya.in" className="social-link" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <path d="M2 7l10 7 10-7" />
-            </svg>
-          </a>
+          <span className="topbar-separator" aria-hidden="true" />
+
+          {/* Social icons */}
+          <div className="topbar-socials" aria-label="Social links">
+            {/* Facebook */}
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            {/* Instagram */}
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            {/* Twitter / X */}
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            {/* Reddit */}
+            <a href="https://reddit.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Reddit">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M14.5 14.5a2.6 2.6 0 0 1-5 0h5zm4.8-1.2a1.8 1.8 0 0 0-2.7-2.3 6.8 6.8 0 0 0-4.1-1.3c-1.4 0-2.8.5-3.9 1.3a1.8 1.8 0 1 0-1.9 3 .8.8 0 0 1 .2.5c0 2.1 2.5 3.8 5.6 3.8 3.1 0 5.6-1.7 5.6-3.8a.8.8 0 0 1 .2-.5c.6-.3 1-.9 1-1.7zm-8.4-.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                <circle cx="18" cy="7.2" r="1.6"/>
+                <path d="M12.5 9.1 13.5 5l3 1" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+              </svg>
+            </a>
+            {/* Email */}
+            <a href="mailto:contact@naatya.in" className="social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M2 7l10 7 10-7" />
+              </svg>
+            </a>
+          </div>
         </div>
       </header>
 
@@ -145,6 +159,8 @@ function App() {
               />
             }
           />
+          <Route path="/movie/:movieId" element={<MovieReviewPage />} />
+          <Route path="/profile/:slug" element={<ProfilePage />} />
           <Route path="/selected/:year" element={<SelectedYearPage />} />
           <Route path="/selected" element={<SelectedYearPage />} />
           <Route
@@ -187,6 +203,9 @@ function App() {
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Twitter">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+              </a>
+              <a href="https://reddit.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="Reddit">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.5 14.5a2.6 2.6 0 0 1-5 0h5zm4.8-1.2a1.8 1.8 0 0 0-2.7-2.3 6.8 6.8 0 0 0-4.1-1.3c-1.4 0-2.8.5-3.9 1.3a1.8 1.8 0 1 0-1.9 3 .8.8 0 0 1 .2.5c0 2.1 2.5 3.8 5.6 3.8 3.1 0 5.6-1.7 5.6-3.8a.8.8 0 0 1 .2-.5c.6-.3 1-.9 1-1.7zm-8.4-.2a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/><circle cx="18" cy="7.2" r="1.6"/><path d="M12.5 9.1 13.5 5l3 1" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
               </a>
               <a href="mailto:contact@naatya.in" className="social-link" aria-label="Email">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M2 7l10 7 10-7" /></svg>
