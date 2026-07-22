@@ -12,23 +12,23 @@ const TEMP_SCROLL_IMAGES = [
 ]
 
 const TEMP_SELECTED_MOVIES = [
-  { id: 1, title: 'Laapata Ladies', year: '2024' },
-  { id: 2, title: 'Stree 2', year: '2024' },
-  { id: 3, title: 'Tanhaji', year: '2020' },
-  { id: 4, title: 'Gangubai Kathiawadi', year: '2022' },
-  { id: 5, title: 'Drishyam 2', year: '2022' },
-  { id: 6, title: 'Pathaan', year: '2023' },
-  { id: 7, title: '12th Fail', year: '2023' },
+  { id: 'nm-ll-2024', title: 'Laapata Ladies', year: '2024' },
+  { id: 'nm-stree2-2024', title: 'Stree 2', year: '2024' },
+  { id: 'nm-tanhaji-2020', title: 'Tanhaji', year: '2020' },
+  { id: 'nm-gk-2022', title: 'Gangubai Kathiawadi', year: '2022' },
+  { id: 'nm-drishyam2-2022', title: 'Drishyam 2', year: '2022' },
+  { id: 'nm-pathaan-2023', title: 'Pathaan', year: '2023' },
+  { id: 'nm-12thfail-2023', title: '12th Fail', year: '2023' },
 ]
 
 const TEMP_RISING_STARS = [
-  { id: 1, name: 'Sanjay Dutt Jr.', role: 'Actor' },
-  { id: 2, name: 'Priya Malhotra', role: 'Actress' },
-  { id: 3, name: 'Arjun Kapoor II', role: 'Actor' },
-  { id: 4, name: 'Neha Verma', role: 'Actress' },
-  { id: 5, name: 'Kabir Anand', role: 'Actor' },
-  { id: 6, name: 'Riya Sharma', role: 'Actress' },
-  { id: 7, name: 'Vikram Singh', role: 'Actor' },
+  { id: 1, slug: 'sanjay-dutt-jr', name: 'Sanjay Dutt Jr.', role: 'Actor' },
+  { id: 2, slug: 'priya-malhotra', name: 'Priya Malhotra', role: 'Actress' },
+  { id: 3, slug: 'arjun-kapoor-ii', name: 'Arjun Kapoor II', role: 'Actor' },
+  { id: 4, slug: 'neha-verma', name: 'Neha Verma', role: 'Actress' },
+  { id: 5, slug: 'kabir-anand', name: 'Kabir Anand', role: 'Director' },
+  { id: 6, slug: 'riya-sharma', name: 'Riya Sharma', role: 'Actress' },
+  { id: 7, slug: 'vikram-singh', name: 'Vikram Singh', role: 'Actor' },
 ]
 
 export default function HomePage() {
@@ -60,10 +60,10 @@ export default function HomePage() {
           <h2 className="side-card-title">NaatyaMandap Selected</h2>
           <p className="side-card-sub">Annual curated picks across films and performances.</p>
           <ol className="movie-list" aria-label="Selected movies">
-            {TEMP_SELECTED_MOVIES.map((movie) => (
+            {TEMP_SELECTED_MOVIES.map((movie, idx) => (
               <li key={movie.id}>
-                <Link to="/selected/2026" className="movie-list-item">
-                  <span className="movie-list-num">{movie.id}</span>
+                <Link to={`/movie/${movie.id}`} className="movie-list-item">
+                  <span className="movie-list-num">{idx + 1}</span>
                   <span className="movie-list-title">{movie.title}</span>
                   <span className="movie-list-badge">{movie.year}</span>
                 </Link>
@@ -78,13 +78,13 @@ export default function HomePage() {
         {/* Pill-cards */}
         <div className="home-pills-row">
           <div className="pill-card">
-            <div className="pill-top">Theatrical</div>
+            <div className="pill-top">Theatrical Releases</div>
             <div className="pill-bottom pill-bottom--single">
               <Link to="/releases/theatre" className="pill-link">Movies</Link>
             </div>
           </div>
           <div className="pill-card">
-            <div className="pill-top">OTT</div>
+            <div className="pill-top">OTT Releases</div>
             <div className="pill-bottom pill-bottom--two">
               <Link to="/releases/ott-movies" className="pill-link">Movies</Link>
               <span className="pill-divider" />
@@ -133,7 +133,7 @@ export default function HomePage() {
         <ol className="movie-list" aria-label="Rising stars">
           {TEMP_RISING_STARS.map((star) => (
             <li key={star.id}>
-              <Link to="/rising-stars" className="movie-list-item">
+              <Link to={`/profile/${star.slug}?name=${encodeURIComponent(star.name)}`} className="movie-list-item">
                 <span className="movie-list-num">{star.id}</span>
                 <span className="movie-list-title">{star.name}</span>
                 <span className="movie-list-badge">{star.role}</span>
