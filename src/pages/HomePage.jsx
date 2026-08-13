@@ -84,7 +84,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="pill-card">
-            <div className="pill-top">OTT Releases</div>
+            <div className="pill-top">Digital Releases</div>
             <div className="pill-bottom pill-bottom--two">
               <Link to="/releases/ott-movies" className="pill-link">Movies</Link>
               <span className="pill-divider" />

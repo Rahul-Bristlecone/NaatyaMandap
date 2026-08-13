@@ -47,7 +47,7 @@ export const mockData = {
       awards: [
         'Critics breakout mention for City Lines',
         'Best newcomer shortlist at Indie Frame Awards',
-        'Recognised in Women to Watch in OTT 2026',
+        'Recognised in Women to Watch in Digital 2026',
       ],
     },
     'arjun-kapoor-ii': {
@@ -377,6 +377,7 @@ export const mockData = {
       genres: 'Crime, Mystery',
       summary: 'A journalist reopens a closed case tied to a vanished filmmaker.',
       rating: 7.4,
+      nmScore: 7.7,
     },
     {
       id: 'om-202',
@@ -386,6 +387,7 @@ export const mockData = {
       genres: 'Comedy, Tech',
       summary: 'A village livestream startup accidentally becomes a global sensation.',
       rating: 7.1,
+      nmScore: 7.5,
     },
   ],
   ottWebSeries: [
@@ -398,6 +400,7 @@ export const mockData = {
       genres: 'Road Drama',
       summary: 'Three strangers chase one clue across six states.',
       rating: 8.3,
+      nmScore: 8.5,
     },
     {
       id: 'ws-302',
@@ -408,6 +411,7 @@ export const mockData = {
       genres: 'Music Drama',
       summary: 'A legacy gharana struggles to survive in algorithm-first times.',
       rating: 8.6,
+      nmScore: 8.8,
     },
   ],
   talentMale: [
@@ -520,7 +524,7 @@ export const mockData = {
       id: 'nw-1001',
       title: 'Major studio announces three-film slate for festive quarter',
       publishedAt: '2026-07-05',
-      summary: 'The lineup includes one theatrical tentpole and two OTT originals.',
+      summary: 'The lineup includes one theatrical tentpole and two digital originals.',
     },
     {
       id: 'nw-1002',
@@ -540,12 +544,12 @@ export const sectionConfig = {
   ottMovieReleases: {
     key: 'ottMovieReleases',
     endpoint: '/releases/ott-movies',
-    title: 'Upcoming Bollywood Releases - OTT',
+    title: 'Upcoming Bollywood Releases - Digital',
   },
   ottWebSeries: {
     key: 'ottWebSeries',
     endpoint: '/series/ott',
-    title: 'Upcoming Web Series - OTT',
+    title: 'Upcoming Web Series - Digital',
   },
   talentMale: {
     key: 'talentMale',

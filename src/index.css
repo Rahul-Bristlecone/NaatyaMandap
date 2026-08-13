@@ -102,7 +102,7 @@ p {
   gap: 20px;
   overflow: hidden;
   box-shadow:
-    0 16px 40px rgba(48, 32, 70, 0.28),
+    0 18px 30px rgba(48, 32, 70, 0.28),
     0 2px 0 rgba(234, 225, 247, 0.26) inset;
   justify-content: space-between;
 }
@@ -409,7 +409,7 @@ p {
 
 .card-title-link {
   text-decoration: none;
-  color: #A46C43;
+  color: #435898;
   transition: color 0.2s ease, background 0.2s ease;
   border-radius: 4px;
   padding: 0 2px;
@@ -492,7 +492,7 @@ p {
 
 /* NM — terracotta */
 .score-chip--nm {
-  background: #A46C43;
+  background: #9b8fac;
   color: #fff;
 }
 
@@ -673,6 +673,11 @@ p {
 .page-block--theatre .content-card {
   background: rgba(213, 232, 214, 0.52);
   border-color: rgba(154, 184, 156, 0.72);
+}
+
+.page-block--themed .content-card {
+  background: var(--listing-card-bg);
+  border-color: var(--listing-card-border);
 }
 
 /* Movie Review Page */
