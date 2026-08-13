@@ -3,6 +3,8 @@ import './App.css'
 import HomePage from './pages/HomePage'
 import ListingPage from './pages/ListingPage'
 import MovieReviewPage from './pages/MovieReviewPage'
+import OttMoviesPage from './pages/OttMoviesPage'
+import OttSeriesPage from './pages/OttSeriesPage'
 import ProfilePage from './pages/ProfilePage'
 import SelectedYearPage from './pages/SelectedYearPage'
 import TheatrePage from './pages/TheatrePage'
@@ -79,26 +81,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/releases/theatre" element={<TheatrePage />} />
-          <Route
-            path="/releases/ott-movies"
-            element={
-              <ListingPage
-                configKey="ottMovieReleases"
-                title="Upcoming Bollywood Releases - OTT"
-                intro="Upcoming direct-to-digital and post-theatrical OTT movie releases."
-              />
-            }
-          />
-          <Route
-            path="/series/ott"
-            element={
-              <ListingPage
-                configKey="ottWebSeries"
-                title="Upcoming Web Series - OTT"
-                intro="Tracked by platform, release date, and season details."
-              />
-            }
-          />
+          <Route path="/releases/ott-movies" element={<OttMoviesPage />} />
+          <Route path="/series/ott" element={<OttSeriesPage />} />
           <Route
             path="/talent/male"
             element={
@@ -218,7 +202,7 @@ function App() {
             <h4 className="footer-col-head">Explore</h4>
             <ul className="footer-links">
               <li><a href="/releases/theatre">Theatrical Releases</a></li>
-              <li><a href="/releases/ott-movies">OTT Movies</a></li>
+              <li><a href="/releases/ott-movies">Digital Movies</a></li>
               <li><a href="/series/ott">Web Series</a></li>
               <li><a href="/reviews/movies">Movie Reviews</a></li>
               <li><a href="/reviews/music">Music Reviews</a></li>

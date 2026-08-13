@@ -133,6 +133,16 @@ function getCertificationHelp(certification) {
   }
 }
 
+function toReleaseTypePills(releaseType) {
+  const raw = String(releaseType || 'Digital / Theatrical').trim()
+
+  return raw
+    .split(/\s*\/\s*|\s*&\s*|\s*,\s*/)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .filter((part, index, all) => all.indexOf(part) === index)
+}
+
 export default function MovieReviewPage() {
   const { movieId } = useParams()
   const [movie, setMovie] = useState(null)
@@ -158,6 +168,7 @@ export default function MovieReviewPage() {
   const releaseDate = useMemo(() => formatDate(movie?.releaseDate), [movie?.releaseDate])
   const certification = movie?.certification || 'U/A (13+)'
   const certificationHelp = getCertificationHelp(certification)
+  const releaseTypePills = useMemo(() => toReleaseTypePills(movie?.releaseType), [movie?.releaseType])
 
   if (loading) {
     return (
@@ -184,7 +195,9 @@ export default function MovieReviewPage() {
       <header className="movie-review-top">
         <div className="movie-title-wrap">
           <h2>{movie.title}</h2>
-          <span className="movie-release-type">{movie.releaseType || 'Theatrical'}</span>
+          {releaseTypePills.map((releaseType) => (
+            <span key={releaseType} className="movie-release-type">{releaseType}</span>
+          ))}
         </div>
         <StarRating value={movie.starRating} />
       </header>
@@ -218,8 +231,8 @@ export default function MovieReviewPage() {
               <strong>{releaseDate}</strong>
             </aside>
 
-            <aside className="movie-release-box" aria-label="OTT platform">
-              <span className="movie-release-label">OTT Platform</span>
+            <aside className="movie-release-box" aria-label="Digital platform">
+              <span className="movie-release-label">Digital Platform</span>
               <strong>{movie.ottPlatform || 'N/A'}</strong>
             </aside>
           </div>

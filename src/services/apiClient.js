@@ -2,6 +2,7 @@ import { mockData, sectionConfig } from '../data/mockData'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api/v1'
 const useMocks = import.meta.env.VITE_USE_MOCKS !== 'false'
+const DEFAULT_MOVIE_RELEASE_TYPE = 'Digital / Theatrical'
 
 async function fetchFromApi(endpoint) {
   const response = await fetch(`${API_BASE_URL}${endpoint}`)
@@ -80,7 +81,7 @@ function humanizeSlug(slug) {
 function toReviewPayload(item) {
   const numericScore = item?.starRating ?? item?.nmScore ?? item?.score ?? item?.rating ?? null
   const starRating = numericScore === null ? 3 : Number((numericScore > 5 ? numericScore / 2 : numericScore).toFixed(1))
-  const releaseType = item?.releaseType || (item?.platform ? 'OTT' : 'Theatrical')
+  const releaseType = item?.releaseType || DEFAULT_MOVIE_RELEASE_TYPE
 
   return {
     id: item?.id,
@@ -88,7 +89,7 @@ function toReviewPayload(item) {
     starRating,
     genre: item?.genre || item?.genres || 'Drama',
     releaseType,
-    ottPlatform: item?.ottPlatform || item?.platform || (releaseType === 'OTT' ? 'Netflix' : 'N/A'),
+    ottPlatform: item?.ottPlatform || item?.platform || (releaseType === 'Digital' ? 'Netflix' : 'N/A'),
     reviewer: item?.reviewer || item?.critic || 'Sangeeta Sharma',
     director: item?.director || 'To be announced',
     writers: item?.writers || 'To be announced',
@@ -117,7 +118,10 @@ export async function getMovieReviewById(movieId) {
   if (useMocks) {
     const directReview = mockData.movieReviewsById?.[movieId]
     if (directReview) {
-      return directReview
+      return {
+        ...directReview,
+        releaseType: DEFAULT_MOVIE_RELEASE_TYPE,
+      }
     }
 
     const allItems = flattenSectionItems()
@@ -141,7 +145,10 @@ export async function getMovieReviewById(movieId) {
 
   const directReview = mockData.movieReviewsById?.[movieId]
   if (directReview) {
-    return directReview
+    return {
+      ...directReview,
+      releaseType: DEFAULT_MOVIE_RELEASE_TYPE,
+    }
   }
 
   const allItems = flattenSectionItems()

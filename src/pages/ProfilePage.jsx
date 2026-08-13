@@ -206,7 +206,7 @@ export default function ProfilePage() {
             </ul>
           </div>
           <div className="profile-career-column">
-            <h4>OTT</h4>
+            <h4>Digital</h4>
             <ul>
               {renderCareerItems(profile.ottCareer)}
             </ul>
