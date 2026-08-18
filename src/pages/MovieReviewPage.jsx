@@ -143,6 +143,19 @@ function toReleaseTypePills(releaseType) {
     .filter((part, index, all) => all.indexOf(part) === index)
 }
 
+function firstAvailable(...values) {
+  return values.find((value) => value !== undefined && value !== null && String(value).trim() !== '') || 'TBA'
+}
+
+function toNmScore(movie) {
+  const score = movie?.nmScore ?? movie?.score ?? movie?.rating
+  if (Number.isFinite(score)) {
+    return score > 5 ? score : score * 2
+  }
+
+  return Number.isFinite(movie?.starRating) ? movie.starRating * 2 : null
+}
+
 export default function MovieReviewPage() {
   const { movieId } = useParams()
   const [movie, setMovie] = useState(null)
@@ -169,6 +182,11 @@ export default function MovieReviewPage() {
   const certification = movie?.certification || 'U/A (13+)'
   const certificationHelp = getCertificationHelp(certification)
   const releaseTypePills = useMemo(() => toReleaseTypePills(movie?.releaseType), [movie?.releaseType])
+  const distributedBy = firstAvailable(movie?.distributedBy, movie?.distributor, movie?.distribution)
+  const budget = firstAvailable(movie?.budget, movie?.productionBudget)
+  const collection = firstAvailable(movie?.collection, movie?.boxOffice, movie?.boxOfficeCollection)
+  const runningTime = firstAvailable(movie?.runningTime, movie?.runtime, movie?.duration)
+  const nmScore = toNmScore(movie)
 
   if (loading) {
     return (
@@ -194,11 +212,20 @@ export default function MovieReviewPage() {
     <section className="page-block movie-review-page">
       <header className="movie-review-top">
         <div className="movie-title-wrap">
-          <h2>{movie.title}</h2>
+          <h2>
+            {movie.title}
+            <sub className="movie-title-runtime">{runningTime}</sub>
+          </h2>
           {releaseTypePills.map((releaseType) => (
             <span key={releaseType} className="movie-release-type">{releaseType}</span>
           ))}
         </div>
+        {nmScore ? (
+          <span className="score-chip score-chip--nm movie-review-nm-score" data-tooltip="NaatyaMandap">
+            <span className="score-chip__label">NM</span>
+            <span className="score-chip__val">{nmScore.toFixed(1)}</span>
+          </span>
+        ) : null}
         <StarRating value={movie.starRating} />
       </header>
 
@@ -211,6 +238,9 @@ export default function MovieReviewPage() {
           <p><strong>Editor</strong><span>{renderProfileLinks(movie.editor)}</span></p>
           <p><strong>Cast</strong><span>{renderProfileLinks(movie.cast)}</span></p>
           <p><strong>Genre</strong><span>{renderGenrePills(movie.genre)}</span></p>
+          <p><strong>Distributed by</strong><span>{distributedBy}</span></p>
+          <p><strong>Budget</strong><span>{budget}</span></p>
+          <p><strong>Collection</strong><span>{collection}</span></p>
           <p><strong>Rating</strong><span><span className="movie-certification-pill" data-tooltip={certificationHelp}>{certification}</span></span></p>
         </div>
 
