@@ -98,6 +98,10 @@ function toReviewPayload(item) {
     editor: item?.editor || 'To be announced',
     cast: item?.cast || 'Cast details to be updated',
     certification: item?.certification || 'U/A (13+)',
+    distributedBy: item?.distributedBy || item?.distributor || item?.distribution || 'TBA',
+    budget: item?.budget || item?.productionBudget || 'TBA',
+    collection: item?.collection || item?.boxOffice || item?.boxOfficeCollection || 'TBA',
+    runningTime: item?.runningTime || item?.runtime || item?.duration || 'TBA',
     releaseDate: item?.releaseDate || 'TBA',
     reviewSummary:
       item?.reviewSummary ||
